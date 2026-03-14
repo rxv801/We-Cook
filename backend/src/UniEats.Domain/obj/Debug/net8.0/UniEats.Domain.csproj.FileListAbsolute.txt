@@ -11,3 +11,16 @@
 /home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.pdb
 /home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/Debug/net8.0/ref/UniEats.Domain.dll
 /home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.csproj.AssemblyReference.cache
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/bin/Debug/net8.0/UniEats.Domain.deps.json
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/bin/Debug/net8.0/UniEats.Domain.dll
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/bin/Debug/net8.0/UniEats.Domain.pdb
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.csproj.AssemblyReference.cache
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.AssemblyInfoInputs.cache
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.AssemblyInfo.cs
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.csproj.CoreCompileInputs.cache
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.sourcelink.json
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.dll
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/refint/UniEats.Domain.dll
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/UniEats.Domain.pdb
+/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/Debug/net8.0/ref/UniEats.Domain.dll

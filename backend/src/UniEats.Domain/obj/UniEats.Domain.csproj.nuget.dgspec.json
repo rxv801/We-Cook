@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {}
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {}
   },
   "projects": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
+        "projectUniqueName": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
         "projectName": "UniEats.Domain",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/",
+        "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
+        "packagesPath": "/Users/rex/.nuget/packages/",
+        "outputPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "/Users/rex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,7 +32,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -58,12 +64,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
