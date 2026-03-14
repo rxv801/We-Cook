@@ -5,9 +5,16 @@ using UniEats.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// PostgreSQL connection from environment (port 5432); password must be set in env.
+var dbHost = builder.Configuration["POSTGRES_HOST"] ?? "localhost";
+var dbPort = builder.Configuration["POSTGRES_PORT"] ?? "5432";
+var dbName = builder.Configuration["POSTGRES_DB"] ?? "UniEatsDb";
+var dbUser = builder.Configuration["POSTGRES_USER"] ?? "postgres";
+var dbPassword = builder.Configuration["POSTGRES_PASSWORD"] ?? "";
+var connectionString = $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPassword}";
+
 builder.Services.AddDbContext<UniEatsDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IMealService, MealService>();
