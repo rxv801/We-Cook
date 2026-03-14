@@ -1,0 +1,6 @@
+@UniEats.Api_HostAddress = http://localhost:5103
+
+GET {{UniEats.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,16 @@
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/bin/Debug/net8.0/UniEats.Application.deps.json
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/bin/Debug/net8.0/UniEats.Application.dll
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/bin/Debug/net8.0/UniEats.Application.pdb
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/bin/Debug/net8.0/UniEats.Domain.dll
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/bin/Debug/net8.0/UniEats.Domain.pdb
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.csproj.AssemblyReference.cache
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.GeneratedMSBuildEditorConfig.editorconfig
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.AssemblyInfoInputs.cache
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.AssemblyInfo.cs
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.csproj.CoreCompileInputs.cache
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.sourcelink.json
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.csproj.CopyComplete
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.dll
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/refint/UniEats.Application.dll
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/UniEats.Application.pdb
+/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/Debug/net8.0/ref/UniEats.Application.dll
