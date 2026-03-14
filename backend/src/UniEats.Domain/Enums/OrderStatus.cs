@@ -2,8 +2,8 @@ namespace UniEats.Domain.Enums;
 
 public enum OrderStatus
 {
-    Created = 0,
-    Paid = 1,
-    Collected = 2,
-    Cancelled = 3
+    PendingPickup = 0,
+    Completed = 1,
+    Cancelled = 2,
+    Flagged = 3
 }

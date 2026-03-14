@@ -13,6 +13,7 @@ public class UniEatsDbContext : DbContext
     public DbSet<MealListing> MealListings { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<Review> Reviews { get; set; } = null!;
+    public DbSet<StrikeEvent> StrikeEvents { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,7 +31,7 @@ public class UniEatsDbContext : DbContext
         // MealListing Configuration
         modelBuilder.Entity<MealListing>()
             .Property(m => m.RowVersion)
-            .IsRowVersion(); // Configures as concurrency token
+            .IsRowVersion();
 
         // Relationships
 
@@ -51,16 +52,28 @@ public class UniEatsDbContext : DbContext
         // MealListing -> Orders
         modelBuilder.Entity<Order>()
             .HasOne(o => o.MealListing)
-            .WithMany() // No navigation property on MealListing for Orders yet
+            .WithMany()
             .HasForeignKey(o => o.MealListingId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Order -> Review (One-to-One or One-to-Many depending on logic, assuming One-to-Many but with Unique Index if One-to-One desired)
-        // Here we just map FK.
+        // Review Configuration
         modelBuilder.Entity<Review>()
             .HasOne(r => r.Order)
-            .WithMany() // No navigation property on Order for Reviews
+            .WithMany()
             .HasForeignKey(r => r.OrderId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // StrikeEvent Configuration
+        modelBuilder.Entity<StrikeEvent>()
+            .HasOne(s => s.Cook)
+            .WithMany()
+            .HasForeignKey(s => s.CookId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<StrikeEvent>()
+            .HasOne(s => s.Order)
+            .WithMany()
+            .HasForeignKey(s => s.OrderId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

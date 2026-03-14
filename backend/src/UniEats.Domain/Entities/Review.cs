@@ -4,12 +4,15 @@ namespace UniEats.Domain.Entities;
 
 public class Review
 {
-    public int ReviewId { get; set; }
+    public Guid ReviewId { get; set; }
 
-    public int OrderId { get; set; }
+    public Guid OrderId { get; set; }
+
+    public Guid CookId { get; set; } // Denormalized
+    public Guid BuyerId { get; set; } // Denormalized
 
     [Range(1, 5)]
-    public int Rating { get; set; }
+    public int Stars { get; set; }
 
     public string? Comment { get; set; }
 
