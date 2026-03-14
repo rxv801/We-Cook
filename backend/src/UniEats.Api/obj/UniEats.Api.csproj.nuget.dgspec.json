@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj": {}
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Api/UniEats.Api.csproj": {}
   },
   "projects": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj": {
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Api/UniEats.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj",
+        "projectUniqueName": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Api/UniEats.Api.csproj",
         "projectName": "UniEats.Api",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/obj/",
+        "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Api/UniEats.Api.csproj",
+        "packagesPath": "/Users/rex/.nuget/packages/",
+        "outputPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "/Users/rex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
-                "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj"
+              "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
+                "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/UniEats.Application.csproj"
               }
             }
           }
@@ -36,7 +36,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -47,6 +53,12 @@
               "version": "[8.0.22, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
             },
@@ -70,6 +82,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -78,21 +104,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj",
+        "projectUniqueName": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/UniEats.Application.csproj",
         "projectName": "UniEats.Application",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/",
+        "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/UniEats.Application.csproj",
+        "packagesPath": "/Users/rex/.nuget/packages/",
+        "outputPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "/Users/rex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -104,8 +130,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
-                "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj"
+              "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
+                "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj"
               }
             }
           }
@@ -114,7 +140,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -130,26 +162,36 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
+    "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
+        "projectUniqueName": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
         "projectName": "UniEats.Domain",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/",
+        "projectPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
+        "packagesPath": "/Users/rex/.nuget/packages/",
+        "outputPath": "/Users/rex/Personal_Projects/we-cook/backend/src/UniEats.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "/Users/rex/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -167,7 +209,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0": {
@@ -193,12 +241,22 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.13, 8.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
