@@ -6,6 +6,7 @@ const router = createRouter({
   routeTree,
   defaultPreload: 'intent',
   scrollRestoration: true,
+  context: { auth: { isAuthenticated: false } },
 })
 
 declare module '@tanstack/react-router' {
