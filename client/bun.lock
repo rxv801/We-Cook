@@ -5,6 +5,8 @@
     "": {
       "name": "we-cook",
       "dependencies": {
+        "@azure/msal-browser": "^5.5.0",
+        "@azure/msal-react": "^5.0.7",
         "@tailwindcss/vite": "^4.1.18",
         "@tanstack/react-devtools": "latest",
         "@tanstack/react-router": "latest",
@@ -42,6 +44,12 @@
     "@asamuzakjp/dom-selector": ["@asamuzakjp/dom-selector@6.8.1", "", { "dependencies": { "@asamuzakjp/nwsapi": "^2.3.9", "bidi-js": "^1.0.3", "css-tree": "^3.1.0", "is-potential-custom-element-name": "^1.0.1", "lru-cache": "^11.2.6" } }, "sha512-MvRz1nCqW0fsy8Qz4dnLIvhOlMzqDVBabZx6lH+YywFDdjXhMY37SmpV1XFX3JzG5GWHn63j6HX6QPr3lZXHvQ=="],
 
     "@asamuzakjp/nwsapi": ["@asamuzakjp/nwsapi@2.3.9", "", {}, "sha512-n8GuYSrI9bF7FFZ/SjhwevlHc8xaVlb/7HmHelnc/PZXBD2ZR49NnN9sMMuDdEGPeeRQ5d0hqlSlEpgCX3Wl0Q=="],
+
+    "@azure/msal-browser": ["@azure/msal-browser@5.5.0", "", { "dependencies": { "@azure/msal-common": "16.3.0" } }, "sha512-ImdTOyk8ISv1HMJez2dR0E3D9mBn0lpRieUGXjMGKgI2Ufs7NoIdeSKzm1JUTF0NyJaVbnANplcNLzJiO1G73w=="],
+
+    "@azure/msal-common": ["@azure/msal-common@16.3.0", "", {}, "sha512-qNc/noEts5Kf6oLtbuLEg1PkmM+GXEQlxC5VCrmCFbDo3Xyg5hDR3UFR2jZ8MK76epGuBWKSWoa2rCIYZVp5AQ=="],
+
+    "@azure/msal-react": ["@azure/msal-react@5.0.7", "", { "peerDependencies": { "@azure/msal-browser": "^5.5.0", "react": "^19.2.1" } }, "sha512-PFHKN5BXhGkYQu9tN6t0svhs9LudAppdmJgR60pyCtYHaTDLE0BdG/07Paa5drPmEoD5Fjh+qSfgyMZgYYsCmQ=="],
 
     "@babel/code-frame": ["@babel/code-frame@7.29.0", "", { "dependencies": { "@babel/helper-validator-identifier": "^7.28.5", "js-tokens": "^4.0.0", "picocolors": "^1.1.1" } }, "sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw=="],
 

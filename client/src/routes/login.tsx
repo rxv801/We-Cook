@@ -1,22 +1,30 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { useAuth } from '#/contexts/AuthContext'
-import { GoogleSignInButton } from '#/components/GoogleSignInButton'
+import { MicrosoftSignInButton } from '#/components/MicrosoftSignInButton'
 
 export const Route = createFileRoute('/login')({
-  component: IndexPage,
+  component: LoginPage,
 })
 
-function IndexPage() {
-  const { isAuthenticated } = useAuth()
+function LoginPage() {
+  const { isAuthenticated, isAuthLoading } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (isAuthLoading) return
     if (isAuthenticated) {
       navigate({ to: '/' })
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, isAuthLoading, navigate])
 
+  if (isAuthLoading) {
+    return (
+      <main className="page-wrap flex items-center justify-center px-4 pb-8 pt-14">
+        <p className="text-[var(--sea-ink)] opacity-80">Loading…</p>
+      </main>
+    )
+  }
   if (isAuthenticated) {
     return null
   }
@@ -27,7 +35,7 @@ function IndexPage() {
         <p className="mb-6 text-[var(--sea-ink)]">
           Sign in to browse meals and connect with cooks.
         </p>
-        <GoogleSignInButton />
+        <MicrosoftSignInButton />
       </section>
     </main>
   )

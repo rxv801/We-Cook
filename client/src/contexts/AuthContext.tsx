@@ -4,12 +4,17 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react'
 import type { ReactNode } from 'react'
+import { useIsAuthenticated, useMsal } from '@azure/msal-react'
+import type { AccountInfo } from '@azure/msal-browser'
+import { loginWithBackend } from '#/api/auth'
+import type { LoginResponse } from '#/api/auth'
 
 const AUTH_STORAGE_KEY = 'we-cook-auth'
+const BACKEND_USER_KEY = 'we-cook-backend-user'
+const ALLOWED_EMAIL_SUFFIX = '.edu.au'
 
 export interface AuthUser {
   email: string
@@ -20,133 +25,181 @@ export interface AuthUser {
 
 interface AuthState {
   user: AuthUser | null
+  /** User object from backend (POST /auth/login) after login/register */
+  backendUser: LoginResponse | null
   isAuthenticated: boolean
-  isGoogleReady: boolean
-  signInWithGoogle: () => void
+  /** True while MSAL is initializing or we have an account but haven't finished token acquisition yet. Don't redirect during this. */
+  isAuthLoading: boolean
+  isMicrosoftReady: boolean
+  signInWithMicrosoft: () => void
   signOut: () => void
+  authError: string | null
 }
 
 const AuthContext = createContext<AuthState | null>(null)
 
-function parseJwtPayload(token: string): {
-  email?: string
-  name?: string
-  picture?: string
-} {
-  try {
-    const base64 = token.split('.')[1]
-    if (!base64) return {}
-    const json = atob(base64.replace(/-/g, '+').replace(/_/g, '/'))
-    return JSON.parse(json) as {
-      email?: string
-      name?: string
-      picture?: string
-    }
-  } catch {
-    return {}
+function isAllowedEmail(email: string): boolean {
+  return email.toLowerCase().endsWith(ALLOWED_EMAIL_SUFFIX)
+}
+
+function accountToAuthUser(account: AccountInfo, idToken: string): AuthUser {
+  const email = account.username ?? (account.idTokenClaims as Record<string, unknown>)?.preferred_username ?? (account.idTokenClaims as Record<string, unknown>)?.email as string ?? ''
+  const name = account.name ?? (account.idTokenClaims as Record<string, unknown>)?.name as string ?? email
+  const picture = (account.idTokenClaims as Record<string, unknown>)?.picture as string | undefined
+  return {
+    email,
+    name,
+    picture,
+    idToken,
   }
 }
 
-function loadGoogleScript(): Promise<void> {
-  if (window.google?.accounts.id) return Promise.resolve()
-  return new Promise((resolve, reject) => {
-    const existing = document.querySelector(
-      'script[src*="accounts.google.com/gsi/client"]',
-    )
-    if (existing) {
-      if (window.google?.accounts.id) return resolve()
-      window.onGoogleLibraryLoad = () => resolve()
-      return
-    }
-    const script = document.createElement('script')
-    script.src = 'https://accounts.google.com/gsi/client'
-    script.async = true
-    script.onload = () => {
-      if (window.google?.accounts.id) return resolve()
-      window.onGoogleLibraryLoad = () => resolve()
-    }
-    script.onerror = () => reject(new Error('Failed to load Google Sign-In'))
-    document.head.appendChild(script)
-  })
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const { instance, accounts, inProgress } = useMsal()
+  const isAuthenticatedMsal = useIsAuthenticated()
   const [user, setUser] = useState<AuthUser | null>(() => {
     try {
-      // localStorage.removeItem(AUTH_STORAGE_KEY)
       const raw = localStorage.getItem(AUTH_STORAGE_KEY)
       if (!raw) return null
       const data = JSON.parse(raw) as AuthUser
-      return data.email && data.idToken ? data : null
+      if (!data.email || !data.idToken) return null
+      if (!isAllowedEmail(data.email)) return null
+      return data
     } catch {
       return null
     }
   })
-  const [isGoogleReady, setGoogleReady] = useState(false)
-  const initRef = useRef(false)
+  const [authError, setAuthError] = useState<string | null>(null)
+  const [backendUser, setBackendUser] = useState<LoginResponse | null>(() => {
+    try {
+      const raw = localStorage.getItem(BACKEND_USER_KEY)
+      if (!raw) return null
+      return JSON.parse(raw) as LoginResponse
+    } catch {
+      return null
+    }
+  })
 
-  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID as string | undefined
+  const clientId = import.meta.env.VITE_MICROSOFT_CLIENT_ID as string | undefined
+  const isMicrosoftReady = Boolean(clientId) && inProgress === 'none'
+  // Still loading: MSAL busy (e.g. handling redirect) or we have an account but token not acquired yet
+  const isAuthLoading =
+    inProgress !== 'none' || (isAuthenticatedMsal && accounts.length > 0 && !user)
 
   useEffect(() => {
-    if (initRef.current) return
-    initRef.current = true
-    if (!clientId) {
-      setGoogleReady(true)
+    if (!isAuthenticatedMsal || accounts.length === 0) return
+    const account = accounts[0]
+    const email = account.username ?? (account.idTokenClaims as Record<string, unknown>)?.preferred_username ?? (account.idTokenClaims as Record<string, unknown>)?.email as string ?? ''
+    if (!isAllowedEmail(email)) {
+      setAuthError('Only .edu.au email addresses can sign in.')
+      instance.logoutRedirect().catch(() => {})
       return
     }
-    loadGoogleScript()
-      .then(() => {
-        window.google?.accounts.id.initialize({
-          client_id: clientId,
-          callback: (response: { credential: string }) => {
-            const payload = parseJwtPayload(response.credential)
-            const authUser: AuthUser = {
-              email: payload.email ?? '',
-              name: payload.name ?? payload.email ?? '',
-              picture: payload.picture,
-              idToken: response.credential,
+    setAuthError(null)
+    instance.acquireTokenSilent({ scopes: ['User.Read', 'openid', 'profile', 'email'], account })
+      .then((response) => {
+        const authUser = accountToAuthUser(account, response.idToken)
+        setUser(authUser)
+        try {
+          localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser))
+        } catch {
+          // ignore
+        }
+        return authUser
+      })
+      .then((authUser) => {
+        loginWithBackend({
+          email: authUser.email,
+          displayName: authUser.name,
+        })
+          .then((res) => {
+            setBackendUser(res)
+            try {
+              localStorage.setItem(BACKEND_USER_KEY, JSON.stringify(res))
+            } catch {
+              // ignore
             }
+          })
+          .catch((err) => setAuthError(err.message ?? 'Backend login failed.'))
+      })
+      .catch(() => {
+        instance.acquireTokenPopup({ scopes: ['User.Read', 'openid', 'profile', 'email'], account })
+          .then((response) => {
+            const authUser = accountToAuthUser(account, response.idToken)
             setUser(authUser)
             try {
               localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser))
             } catch {
               // ignore
             }
-          },
-        })
-        setGoogleReady(true)
+            return authUser
+          })
+          .then((authUser) => {
+            loginWithBackend({
+              email: authUser.email,
+              displayName: authUser.name,
+            })
+              .then((res) => {
+                setBackendUser(res)
+                try {
+                  localStorage.setItem(BACKEND_USER_KEY, JSON.stringify(res))
+                } catch {
+                  // ignore
+                }
+              })
+              .catch((err) => setAuthError(err.message ?? 'Backend login failed.'))
+          })
+          .catch(() => setAuthError('Failed to get token.'))
       })
-      .catch(() => setGoogleReady(true))
-  }, [clientId])
+  }, [isAuthenticatedMsal, accounts, instance])
 
-  const signInWithGoogle = useCallback(() => {
-    if (!window.google?.accounts.id || !clientId) return
-    window.google.accounts.id.prompt()
-  }, [clientId])
+  useEffect(() => {
+    if (!isAuthenticatedMsal && accounts.length === 0) {
+      setUser(null)
+      setBackendUser(null)
+      setAuthError(null)
+      try {
+        localStorage.removeItem(AUTH_STORAGE_KEY)
+        localStorage.removeItem(BACKEND_USER_KEY)
+      } catch {
+        // ignore
+      }
+    }
+  }, [isAuthenticatedMsal, accounts.length])
+
+  const signInWithMicrosoft = useCallback(() => {
+    setAuthError(null)
+    instance.loginRedirect({ scopes: ['User.Read', 'openid', 'profile', 'email'] }).catch((err) => {
+      if (err.message?.includes('user_cancelled') || err.errorCode === 'user_cancelled') return
+      setAuthError(err.message ?? 'Sign-in failed.')
+    })
+  }, [instance])
 
   const signOut = useCallback(() => {
     setUser(null)
+    setBackendUser(null)
+    setAuthError(null)
     try {
       localStorage.removeItem(AUTH_STORAGE_KEY)
+      localStorage.removeItem(BACKEND_USER_KEY)
     } catch {
       // ignore
     }
-    if (window.google?.accounts.id) {
-      window.google.accounts.id.disableAutoSelect()
-      window.google.accounts.id.cancel()
-    }
-  }, [])
+    instance.logoutRedirect().catch(() => {})
+  }, [instance])
 
-  const hasClientId = Boolean(clientId)
   const value = useMemo<AuthState>(
     () => ({
       user,
+      backendUser,
       isAuthenticated: !!user,
-      isGoogleReady: hasClientId && isGoogleReady,
-      signInWithGoogle,
+      isAuthLoading,
+      isMicrosoftReady,
+      signInWithMicrosoft,
       signOut,
+      authError,
     }),
-    [user, isGoogleReady, signInWithGoogle, signOut, hasClientId],
+    [user, backendUser, isAuthLoading, isMicrosoftReady, signInWithMicrosoft, signOut, authError],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

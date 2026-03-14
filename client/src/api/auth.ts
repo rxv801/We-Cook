@@ -14,15 +14,23 @@ export interface ApiUser {
   createdAt?: string
 }
 
-/** POST /auth/login request (Google ID token) */
+/** POST /auth/login request (matches backend RegisterUserDto) */
 export interface LoginRequest {
-  idToken: string
+  email: string
+  displayName: string
+  university?: string | null
+  campus?: string | null
 }
 
-/** POST /auth/login response */
+/** POST /auth/login response (backend returns UserDto) */
 export interface LoginResponse {
-  token: string
-  user?: ApiUser
+  userId: string
+  email: string
+  displayName: string
+  university?: string | null
+  campus?: string | null
+  strikeCount?: number
+  isBannedFromPosting?: boolean
 }
 
 const AUTH_PREFIX = `${API_BASE_URL}/Auth`
@@ -36,20 +44,22 @@ function getAuthHeaders(token: string): HeadersInit {
 }
 
 /**
- * Exchange Google ID token for backend session.
+ * Register or login with backend. Email must end with .edu.au (enforced by backend).
  * POST /auth/login
  */
-export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
+export async function loginWithBackend(
+  body: LoginRequest,
+): Promise<LoginResponse> {
   const res = await fetch(`${AUTH_PREFIX}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ idToken } satisfies LoginRequest),
+    body: JSON.stringify(body),
   })
   if (!res.ok) {
     const text = await res.text()
     throw new Error(
-      res.status === 401
-        ? 'Invalid or expired sign-in. Try again.'
+      res.status === 400
+        ? text || 'Only .edu.au email addresses can sign in.'
         : text || `Login failed (${res.status})`,
     )
   }
