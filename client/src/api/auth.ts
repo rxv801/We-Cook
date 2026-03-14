@@ -25,8 +25,8 @@ export interface LoginResponse {
   user?: ApiUser
 }
 
-const AUTH_PREFIX = `${API_BASE_URL}/auth`
-const USERS_PREFIX = `${API_BASE_URL}/users`
+const AUTH_PREFIX = `${API_BASE_URL}/Auth`
+const USERS_PREFIX = `${API_BASE_URL}/Users`
 
 function getAuthHeaders(token: string): HeadersInit {
   return {
@@ -47,7 +47,11 @@ export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
   })
   if (!res.ok) {
     const text = await res.text()
-    throw new Error(res.status === 401 ? 'Invalid or expired sign-in. Try again.' : text || `Login failed (${res.status})`)
+    throw new Error(
+      res.status === 401
+        ? 'Invalid or expired sign-in. Try again.'
+        : text || `Login failed (${res.status})`,
+    )
   }
   return res.json() as Promise<LoginResponse>
 }
@@ -75,7 +79,7 @@ export async function getMe(token: string): Promise<ApiUser> {
  */
 export async function updateMe(
   token: string,
-  body: Partial<Pick<ApiUser, 'displayName' | 'university' | 'campus'>>
+  body: Partial<Pick<ApiUser, 'displayName' | 'university' | 'campus'>>,
 ): Promise<ApiUser> {
   const res = await fetch(`${USERS_PREFIX}/me`, {
     method: 'PUT',

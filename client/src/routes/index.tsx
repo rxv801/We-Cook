@@ -7,12 +7,14 @@ export const Route = createFileRoute('/')({
 })
 
 function IndexPage() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated, user } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (!isAuthenticated) {
       navigate({ to: '/login' })
+    } else {
+      console.log(user)
     }
   }, [isAuthenticated, navigate])
 
