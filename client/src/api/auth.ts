@@ -1,0 +1,90 @@
+import { API_BASE_URL } from '#/config'
+
+/** User as returned by GET /users/me and POST /auth/login */
+export interface ApiUser {
+  userId: string
+  email: string
+  displayName: string
+  picture?: string
+  university?: string
+  campus?: string
+  avgRating?: number
+  strikeCount?: number
+  isBannedFromPosting?: boolean
+  createdAt?: string
+}
+
+/** POST /auth/login request (Google ID token) */
+export interface LoginRequest {
+  idToken: string
+}
+
+/** POST /auth/login response */
+export interface LoginResponse {
+  token: string
+  user?: ApiUser
+}
+
+const AUTH_PREFIX = `${API_BASE_URL}/auth`
+const USERS_PREFIX = `${API_BASE_URL}/users`
+
+function getAuthHeaders(token: string): HeadersInit {
+  return {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  }
+}
+
+/**
+ * Exchange Google ID token for backend session.
+ * POST /auth/login
+ */
+export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
+  const res = await fetch(`${AUTH_PREFIX}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ idToken } satisfies LoginRequest),
+  })
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(res.status === 401 ? 'Invalid or expired sign-in. Try again.' : text || `Login failed (${res.status})`)
+  }
+  return res.json() as Promise<LoginResponse>
+}
+
+/**
+ * Get current user. Use after login or on app load to restore session.
+ * GET /users/me
+ */
+export async function getMe(token: string): Promise<ApiUser> {
+  const res = await fetch(`${USERS_PREFIX}/me`, {
+    method: 'GET',
+    headers: getAuthHeaders(token),
+  })
+  if (!res.ok) {
+    if (res.status === 401) throw new Error('Unauthorized')
+    const text = await res.text()
+    throw new Error(text || `Failed to load user (${res.status})`)
+  }
+  return res.json() as Promise<ApiUser>
+}
+
+/**
+ * Update current user profile.
+ * PUT /users/me
+ */
+export async function updateMe(
+  token: string,
+  body: Partial<Pick<ApiUser, 'displayName' | 'university' | 'campus'>>
+): Promise<ApiUser> {
+  const res = await fetch(`${USERS_PREFIX}/me`, {
+    method: 'PUT',
+    headers: getAuthHeaders(token),
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(text || `Update failed (${res.status})`)
+  }
+  return res.json() as Promise<ApiUser>
+}
