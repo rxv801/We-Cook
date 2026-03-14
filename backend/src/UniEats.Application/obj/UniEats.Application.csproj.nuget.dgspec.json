@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj": {}
+    "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj": {}
   },
   "projects": {
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
+    "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj",
+        "projectUniqueName": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj",
         "projectName": "UniEats.Application",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/obj/",
+        "projectPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj",
+        "packagesPath": "C:\\Users\\ryanl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ryanl\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
-                "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj"
+              "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\UniEats.Domain.csproj": {
+                "projectPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\UniEats.Domain.csproj"
               }
             }
           }
@@ -36,6 +36,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -57,21 +62,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj": {
+    "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\UniEats.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\UniEats.Domain.csproj",
         "projectName": "UniEats.Domain",
-        "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/UniEats.Domain.csproj",
-        "packagesPath": "/home/uiqvb/.nuget/packages/",
-        "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Domain/obj/",
+        "projectPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\UniEats.Domain.csproj",
+        "packagesPath": "C:\\Users\\ryanl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ryanl\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -89,6 +94,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -120,7 +130,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,14 +1,34 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { useAuth } from '#/contexts/AuthContext'
+import { GoogleSignInButton } from '#/components/GoogleSignInButton'
 
 export const Route = createFileRoute('/')({
-  beforeLoad: ({ context }) => {
-    if (context.auth.isAuthenticated) {
-      throw redirect({ to: '/login' })
-    }
-  },
-  component: App,
+  component: IndexPage,
 })
 
-function App() {
-  return <main className="page-wrap px-4 pb-8 pt-14">hi</main>
+function IndexPage() {
+  const { isAuthenticated } = useAuth()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate({ to: '/feed' })
+    }
+  }, [isAuthenticated, navigate])
+
+  if (isAuthenticated) {
+    return null
+  }
+
+  return (
+    <main className="page-wrap px-4 pb-8 pt-14">
+      <section className="mx-auto max-w-md pt-16">
+        <p className="mb-6 text-[var(--sea-ink)]">
+          Sign in to browse meals and connect with cooks.
+        </p>
+        <GoogleSignInButton />
+      </section>
+    </main>
+  )
 }

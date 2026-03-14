@@ -1221,19 +1221,19 @@
     ]
   },
   "packageFolders": {
-    "/home/uiqvb/.nuget/packages/": {}
+    "C:\\Users\\ryanl\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj",
+      "projectUniqueName": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Api\\UniEats.Api.csproj",
       "projectName": "UniEats.Api",
-      "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/UniEats.Api.csproj",
-      "packagesPath": "/home/uiqvb/.nuget/packages/",
-      "outputPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Api/obj/",
+      "projectPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Api\\UniEats.Api.csproj",
+      "packagesPath": "C:\\Users\\ryanl\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/uiqvb/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ryanl\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1245,8 +1245,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj": {
-              "projectPath": "/home/uiqvb/HACKATHON/We-Cook/backend/src/UniEats.Application/UniEats.Application.csproj"
+            "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj": {
+              "projectPath": "C:\\Users\\ryanl\\Desktop\\programming\\javascript\\website\\we-cook-v2\\backend\\src\\UniEats.Application\\UniEats.Application.csproj"
             }
           }
         }
@@ -1255,6 +1255,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -1297,7 +1302,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/8.0.122/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
