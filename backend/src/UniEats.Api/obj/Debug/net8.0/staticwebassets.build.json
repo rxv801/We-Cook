@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "og/H63tT1NEpxF4fzMiTOlUSvN52dj83ggPsZhhT4UM=",
+  "Hash": "bRJRhTsKoJHnJA9cJjXx/XuAMk4EaZFR6D5AWrAT+l0=",
   "Source": "UniEats.Api",
   "BasePath": "_content/UniEats.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
