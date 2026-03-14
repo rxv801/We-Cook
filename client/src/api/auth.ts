@@ -14,7 +14,7 @@ export interface ApiUser {
   createdAt?: string
 }
 
-/** POST /auth/login request (matches backend RegisterUserDto) */
+/** POST /api/Auth/login request body (matches backend RegisterUserDto from Swagger) */
 export interface LoginRequest {
   email: string
   displayName: string
@@ -22,7 +22,7 @@ export interface LoginRequest {
   campus?: string | null
 }
 
-/** POST /auth/login response (backend returns UserDto) */
+/** POST /api/Auth/login response (backend UserDto) */
 export interface LoginResponse {
   userId: string
   email: string
@@ -33,6 +33,7 @@ export interface LoginResponse {
   isBannedFromPosting?: boolean
 }
 
+/** Base path for Auth controller: POST /api/Auth/login */
 const AUTH_PREFIX = `${API_BASE_URL}/Auth`
 const USERS_PREFIX = `${API_BASE_URL}/Users`
 
@@ -44,8 +45,9 @@ function getAuthHeaders(token: string): HeadersInit {
 }
 
 /**
- * Register or login with backend. Email must end with .edu.au (enforced by backend).
- * POST /auth/login
+ * Register or login with backend (POST /api/Auth/login).
+ * Body: RegisterUserDto { email, displayName, university?, campus? }.
+ * Email must end with .edu.au (enforced by backend).
  */
 export async function loginWithBackend(
   body: LoginRequest,
@@ -53,7 +55,12 @@ export async function loginWithBackend(
   const res = await fetch(`${AUTH_PREFIX}/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      email: body.email,
+      displayName: body.displayName,
+      university: body.university ?? null,
+      campus: body.campus ?? null,
+    }),
   })
   if (!res.ok) {
     const text = await res.text()
