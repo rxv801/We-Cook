@@ -33,9 +33,20 @@ export interface LoginResponse {
   isBannedFromPosting?: boolean
 }
 
-/** Base path for Auth controller: POST /api/Auth/login */
+/** Base path for Auth controller */
 const AUTH_PREFIX = `${API_BASE_URL}/Auth`
 const USERS_PREFIX = `${API_BASE_URL}/Users`
+
+/** GET /api/Auth/{userId} response (backend UserDto) */
+export interface ProfileUser {
+  userId: string
+  email: string
+  displayName: string
+  university?: string | null
+  campus?: string | null
+  strikeCount?: number
+  isBannedFromPosting?: boolean
+}
 
 function getAuthHeaders(token: string): HeadersInit {
   return {
@@ -71,6 +82,19 @@ export async function loginWithBackend(
     )
   }
   return res.json() as Promise<LoginResponse>
+}
+
+/**
+ * Get profile by user id. GET /api/Auth/{userId}
+ */
+export async function getProfile(userId: string): Promise<ProfileUser> {
+  const res = await fetch(`${AUTH_PREFIX}/${encodeURIComponent(userId)}`)
+  if (!res.ok) {
+    if (res.status === 404) throw new Error('User not found')
+    const text = await res.text()
+    throw new Error(text || `Profile failed (${res.status})`)
+  }
+  return res.json() as Promise<ProfileUser>
 }
 
 /**

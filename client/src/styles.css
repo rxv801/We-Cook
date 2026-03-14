@@ -159,6 +159,12 @@ pre code {
   margin-inline: auto;
 }
 
+/* Mobile-first: feed is main focus, full-width content */
+.feed-page {
+  width: 100%;
+  min-height: 0;
+}
+
 .display-title {
   font-family: "Fraunces", Georgia, serif;
 }
